@@ -1,28 +1,23 @@
 {
-  "name": "virtual-world",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "virtualworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --port 9000 --open"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+
   "devDependencies": {
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "eslint": "^8.53.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.0"
-  }
+    "html-webpack-plugin": "^3.2.0",
+    "webpack" : "^4.29.4",
+    "webpack-cli" :"3.1.1",
+    "text-encoding" : "^0.7.0",
+    "webpack-dev-server" : "^3.1.0",
+    "@wasm-tool/wasm-pack-plugin" : "0.4.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
