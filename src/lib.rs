@@ -1,9 +1,11 @@
 
+use js_sys::Error;
 use wasm_bindgen::prelude::*;
-mod primitives;
-use primitives::structs::{Point , Segment};
-mod graph;
-use graph::Graph;
+use web_sys::CanvasRenderingContext2d;
+
+mod math;
+use math::graph::Graph;
+use math::primitives::structs::{Point, Segment};
 
 
 macro_rules! console_log {
@@ -16,7 +18,9 @@ extern "C" {
     fn log(s: &str);
 }
 
-fn get_context() {
+
+fn get_context() -> Result<CanvasRenderingContext2d,Error> { 
+
     let document = web_sys::window().unwrap().document().unwrap();
     let canvas = document.get_element_by_id("virtualWorld").unwrap();
     let canvas: web_sys::HtmlCanvasElement = canvas
@@ -30,13 +34,23 @@ fn get_context() {
         .unwrap()
         .dyn_into::<web_sys::CanvasRenderingContext2d>()
         .unwrap();
+
+    Ok(context)
 }
 
 #[wasm_bindgen(start)]
 fn start() {
-    let ctx = get_context();
-    console_log!("from the rust code")
+    let ctx = get_context().unwrap();
+    
+    let segment = Segment::new(
+        Point::new(100.0, 100.0), 
+        Point::new(200.0, 200.0)
+    );
+    
+    let mut segments = vec![
+        segment
+    ];
 
-    primitives.
-
+    let graph = Graph::new(&mut segments);
+    graph.draw(&ctx)
 }
