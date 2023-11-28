@@ -36,11 +36,6 @@ impl Point  {
         
         let rad = size / 2 as f64;
 
-        console_log!("{:?}",color);
-        console_log!("X: {}", self.x);
-        console_log!("Y: {}", self.y);
-        console_log!("Rad: {}", rad);
-
         // Draw the outer circle.
         ctx.begin_path();
         ctx.set_fill_style(color);
@@ -52,13 +47,14 @@ impl Point  {
     }
 }
 
-pub struct Segment {
-    pub p1 : Point,
-    pub p2 : Point 
+#[derive(Clone)]
+pub struct Segment<'a> {
+    pub p1 : &'a Point,
+    pub p2 : &'a Point 
 }
 
-impl Segment  {
-    pub fn new(p1 : Point, p2 : Point) -> Segment {
+impl <'a> Segment <'a>  {
+    pub fn new(p1 : &'a Point, p2 : &'a Point) -> Segment<'a> {
         return Segment {
             p1: p1,
             p2: p2

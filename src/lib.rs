@@ -42,15 +42,14 @@ fn get_context() -> Result<CanvasRenderingContext2d,Error> {
 fn start() {
     let ctx = get_context().unwrap();
     
-    let segment = Segment::new(
-        Point::new(100.0, 100.0), 
-        Point::new(200.0, 200.0)
-    );
-    
-    let mut segments = vec![
-        segment
-    ];
+    let p1 = Point::new(100.0, 100.0);
+    let p2 = Point::new(200.0, 200.0);
 
-    let graph = Graph::new(&mut segments);
-    graph.draw(&ctx)
+    let s1 = Segment::new(&p1, &p2);
+
+    let mut points = vec![p1.clone(), p2.clone()];
+    let mut segments = vec![s1];
+
+    let graph = Graph::new(&mut points, &mut segments);
+    graph.draw(&ctx);
 }
